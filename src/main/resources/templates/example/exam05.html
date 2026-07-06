@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h5>1. th:text</h5>
+        <p th:text="${data1}"></p>
+
+        <h5>2. 인라인 표현식</h5>
+        <p>[[${data1}]]</p>
+    </div>
+
+    <div>
+        <h5>3. th:utext</h5>
+        <p th:utext="${data2}"></p>
+
+        <h5>4. Unescaped 인라인 표현식</h5>
+<!--        <p>[(${data2})]</p>-->
+    </div>
+
+    <div>
+        <h5>5. 리터럴</h5>
+
+        <!--/*-->
+        <p th:text="'text'"></p>
+        <p th:text="'hello world!'"></p>
+        <!--*/-->
+
+        <p th:text="'이번 한 주도 ' + 'Fighting!!'"></p>
+        <p th:text="'출력 : ' + ${data1}"></p>
+        <p th:text="|출력 : ${data1}|"></p>
+    </div>
+</body>
+</html>

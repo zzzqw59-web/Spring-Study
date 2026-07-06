@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="text-center">
+        <h3>쿼리 파라미터</h3>
+    </div>
+
+    <div th:if="${#strings.isEmpty(language) || #strings.isEmpty(word)}">
+        <p>전달된 파라미터가 존재하지 않습니다.</p>
+    </div>
+
+    <div th:if="${not #strings.isEmpty(language) and not #strings.isEmpty(word)}">
+        <p>
+            언어: <span th:text="${language}"></span>
+        </p>
+        <p>
+            응원 문구: <span th:text="${word}"></span>
+        </p>
+    </div>
+</body>
+</html>

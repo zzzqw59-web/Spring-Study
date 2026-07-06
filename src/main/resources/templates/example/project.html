@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form class="form" method="post" action="/example/project">
+        <div>
+            <h2>프로젝트명</h2>
+            <input type="text" class="projectInput" placeholder="프로젝트명 입력" name="projectName">
+        </div>
+        <div>
+            <p>구현하고 싶은 기능</p>
+            <input type="checkbox" name="features" value="join"> 회원가입
+            <input type="checkbox" name="features" value="login"> 로그인
+            <input type="checkbox" name="features" value="board"> 게시판
+            <input type="checkbox" name="features" value="comment"> 댓글
+            <input type="checkbox" name="features" value="file"> 파일 업로드
+        </div>
+        <button type="submit" class="checkButton">확인</button>
+    </form>
+</body>
+</html>

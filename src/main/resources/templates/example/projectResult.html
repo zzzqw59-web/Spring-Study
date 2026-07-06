@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p th:text="${projectDTO.projectName}"></p>
+    <ul th:each="feature : ${projectDTO.features}">
+        <li th:text="${feature}"></li>
+    </ul>
+</body>
+</html>

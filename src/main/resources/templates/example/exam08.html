@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li>
+            default = <span th:text="${localDateTime}"></span>
+        </li>
+        <li>
+            yyyy-MM-dd HH:MM:SS = <span th:text="${#temporals.format(localDateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+        </li>
+        <li>
+            yyyy-MM-dd a hh:mm = <span th:text="${#temporals.format(localDateTime, 'yyyy-MM-dd a hh:mm')}"></span>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <ul>
+        <li>
+            <a th:href="@{/example/exam01}">
+                basic url(/exam01 요청)
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/example/exam02}">
+                basic url(/exam02 요청)
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/example/exam02(language='java', word='YouCanDoIt')}">
+                example query param
+            </a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

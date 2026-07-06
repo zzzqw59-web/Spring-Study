@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form class="form">
+        이름: <input type="text" class="nameInput" name="name">
+        신청과목: <input type="text" class="courseInput" name="course">
+        수강단계: <select name="level" id="levelInput">
+        <option value="low">입문</option>
+        <option value="middle">중급</option>
+        <option value="hard">고급</option>
+    </select>
+        <button type="button" class="submitButton">확인</button>
+    </form>
+
+    <p th:text="${name}"></p>
+    <p th:text="${course}"></p>
+    <p th:text="${level}"></p>
+    <script src="/js/course.js"></script>
+</body>
+</html>

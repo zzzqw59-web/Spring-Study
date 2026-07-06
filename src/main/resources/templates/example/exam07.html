@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="mb-5">
+        <h5>1. 객체 필드 출력</h5>
+        <p>
+            객체의 필드 값은 ${객체명.필드명} 형식으로 출력할 수 있다.
+            getter 메서드를 직접 호출하는 방식도 사용할 수 있다.
+        </p>
+        <ul>
+            <li>
+                이름: <span th:text="${exampleDTO.name}"></span>
+            </li>
+            <li>
+                나이: <span th:text="${exampleDTO.age}"></span>
+            </li>
+            <li>
+                이메일 <span th:text="${exampleDTO.email}"></span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mb-5">
+        <h5>2. th:object와 선택 변수 표현식</h5>
+        <p>th:object로 기준 객체를 설정하면, 내부에서는 *{필드명}형식으로 객체의 필드에 접근할 수 있다.</p>
+
+        <ul th:object="${exampleDTO}">
+            <li>
+                이름: <span th:text="*{name}"></span>
+            </li>
+            <li>
+                나이: <span th:text="*{age}"></span>
+            </li>
+            <li>
+                이메일: <span th:text="*{email}"></span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mb-5">
+        <h5>3. 숫자 반복 출력</h5>
+        <p>
+            #numbers.sequence(1, 5)는 1부터 5까지의 숫자 목록을 생성한다.
+            생성된 숫자는 number 변수에 하나씩 저장되어 반복 출력한다.
+        </p>
+
+        <table class="table table-bordered w-25">
+            <tr>
+                <th>번호</th>
+            </tr>
+            <tr th:each="number: ${#numbers.sequence(1, 5)}">
+                <td th:text="${number}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="mb-5">
+        <h5>4. 리스트 반복 출력</h5>
+        <p>
+            th:each는 리스트 데이터를 하나씩 꺼내어 반복 출력할 때 사용한다.
+            list에 저장된 각 객체는 example 변수에 하나씩 저장된다.
+        </p>
+
+        <table class="table table-striped">
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>이메일</th>
+            </tr>
+            <tr th:each="example: ${list}">
+                <td th:text="${example.name}"></td>
+                <td th:text="${example.age}"></td>
+                <td th:text="${example.email}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="mb-5">
+        <h5>5. th:object를 사용한 리스트 반복 출력</h5>
+        <p>
+            반복문에서 th:object를 사용하면 반복중인 객체를 기준으로 *{필드명} 형식의 선택 변수 표현식을 사용할 수 있다.
+            반복 상태 정보는 반복 변수명 뒤에 Stat가 붙은 이름으로 사용할 수 있다.
+            예: exampleStat.count
+        </p>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>이메일</th>
+            </tr>
+            <tr th:each="example : ${list}" th:object="${example}">
+                <td th:text="${exampleStat.count}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{age}"></td>
+                <td th:text="*{email}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="mb-5">
+        <h5>6. Map 타입 데이터 출력</h5>
+        <p>
+            Map 타입 데이터는 ${map[키].필드명} 형식으로 접근할 수 있다.
+            예: ${map[1].name}
+        </p>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>이메일</th>
+            </tr>
+            <tr>
+                <td th:text="${map[1].name}"></td>
+                <td th:text="${map[1].age}"></td>
+                <td th:text="${map[1].email}"></td>
+            </tr>
+            <tr>
+                <td th:text="${map[2].name}"></td>
+                <td th:text="${map[2].age}"></td>
+                <td th:text="${map[2].email}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="mb-5">
+        <h6>6.1 Map 타입 데이터 출력 - Key가 String</h6>
+        <table class="table table-bordered">
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>이메일</th>
+            </tr>
+            <tr>
+                <td th:text="${mapData['one'].name}"></td>
+                <td th:text="${mapData['one'].age}"></td>
+                <td th:text="${mapData['one'].email}"></td>
+            </tr>
+            <tr>
+                <td th:text="${mapData['two'].name}"></td>
+                <td th:text="${mapData['two'].age}"></td>
+                <td th:text="${mapData['two'].email}"></td>
+            </tr>
+        </table>
+
+        <h6>6.2 Map 타입 데이터 출력 - 반복문</h6>
+        <table class="table table-bordered">
+            <tr>
+                <th>키</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>이메일</th>
+            </tr>
+            <tr th:each="entry : ${mapData}">
+                <td th:text="${entry.key}"></td>
+                <td th:text="${entry.value.name}"></td>
+                <td th:text="${entry.value.age}"></td>
+                <td th:text="${entry.value.email}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

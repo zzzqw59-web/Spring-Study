@@ -8,9 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h5>나의 취미</h5>
-    <ul>
-        <li th:each="hobby: ${hobbyList}" th:text="${hobby}"></li>
+    <p th:text="${studyDTO.title}"></p>
+    <ul th:each="study : ${studyDTO.courses}">
+        <li th:text=${study}></li>
     </ul>
 </body>
 </html>
