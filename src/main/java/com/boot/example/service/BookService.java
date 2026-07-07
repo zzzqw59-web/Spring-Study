@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface BookService {
     List<Book> bookList();
+
+    int bookInsert(Book book);
 }
