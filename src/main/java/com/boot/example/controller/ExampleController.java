@@ -144,4 +144,10 @@ public class ExampleController {
         model.addAttribute("studyDTO", studyDTO);
         return "example/studyResult";
     }
+
+    @GetMapping("/exam09")
+    @ResponseBody
+    public String exam09() {
+        return "휴식은 게으름이 아니다. 그리고 여름 나무 아래 풀밭에 가끔 누워 물소리를 듣거나 구름이 하늘을 떠다니는 것을 보는 것은 결코 시간 낭비가 아니다.";
+    }
 }

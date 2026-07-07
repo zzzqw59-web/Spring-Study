@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.example.mapper.StudentMapper">
+
+    <resultMap id="studentResult" type="com.boot.example.domain.StudentDTO">
+        <id column="no" property="no" />
+        <result column="SD_NAME" property="name" />
+        <result column="SD_BIRTH" property="birth" />
+        <result column="SD_PHONE" property="phone" />
+        <result column="SD_ADDRESS" property="address" />
+        <result column="SD_EMAIL" property="email" />
+    </resultMap>
+
+    <select id="studentList" resultMap="studentResult">
+        SELECT sd_name, sd_birth, sd_phone, sd_address, sd_email
+        FROM student
+    </select>
+
+</mapper>
