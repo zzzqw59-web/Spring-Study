@@ -8,4 +8,8 @@ public interface BookService {
     List<Book> bookList();
 
     int bookInsert(Book book);
+
+    int bookUpdate(Book book);
+
+    int bookDelete(int bookId);
 }

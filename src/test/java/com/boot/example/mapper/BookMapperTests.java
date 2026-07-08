@@ -34,4 +34,27 @@ public class BookMapperTests {
         log.info("등록된 책 정보: {}", book);
         log.info("자동 생성된 도서 번호: {}", book.getBookId());
     }
+
+    @Test
+    public void deleteBookTest() {
+        int bookId = 46;
+        int result = bookMapper.bookDelete(bookId);
+
+        log.info("삭제된 행의 수: {}", result);
+    }
+
+    @Test
+    public void updateBookTest() {
+        Book book = new Book();
+        book.setBookId(48);
+        book.setTitle("니체와 함께 지적 대화를");
+        book.setAuthor("니체");
+        book.setPublisher("리미트리스");
+        book.setPublishDate("2026-07-08");
+        book.setPrice(15300);
+
+        int result = bookMapper.bookUpdate(book);
+
+        log.info("수정된 행의 수: {}", result);
+    }
 }

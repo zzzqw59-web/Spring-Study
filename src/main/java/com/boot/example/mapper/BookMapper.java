@@ -10,4 +10,8 @@ public interface BookMapper {
     List<Book> bookList();
 
     int bookInsert(Book book);
+
+    int bookDelete(int bookId);
+
+    int bookUpdate(Book book);
 }

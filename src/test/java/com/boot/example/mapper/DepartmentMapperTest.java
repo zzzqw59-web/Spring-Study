@@ -9,12 +9,14 @@ import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabas
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Slf4j
-public class StudentMapperTests {
+public class DepartmentMapperTest {
     @Autowired
-    private StudentMapper studentMapper;
+    private DepartmentMapper departmentMapper;
 
     @Test
-    public void studentListTest() {
-        studentMapper.studentList().forEach((student) -> log.info(student.toString()));
+    public void departmentListTest() {
+        departmentMapper.departmentList().forEach(department -> {
+            log.info(department.toString());
+        });
     }
 }

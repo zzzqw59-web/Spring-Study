@@ -25,4 +25,16 @@
         VALUES (#{title}, #{author}, #{publisher}, TO_DATE(#{publishDate}, 'YYYY-MM-DD'), #{price})
     </insert>
 
+    <update id="bookUpdate" parameterType="com.boot.example.domain.Book">
+        UPDATE book SET
+        title = #{title}, author = #{author}, publisher = #{publisher}, publish_date = TO_DATE(#{publishDate}, 'YYYY-MM-DD'), price = #{price}
+        WHERE book_Id = #{bookId}
+    </update>
+
+    <delete id="bookDelete" parameterType="int">
+        DELETE
+        FROM book
+        WHERE book_id = #{bookId}
+    </delete>
+
 </mapper>

@@ -26,22 +26,26 @@
                         <th scope="col">출판사</th>
                         <th scope="col">출간연도</th>
                         <th scope="col">책가격</th>
+                        <th scope="col">수정여부</th>
+                        <th scope="col">삭제여부</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     <th:block th:if="${#lists.isEmpty(bookList)}">
                         <tr>
-                            <td colspan="6">등록된 책이 없습니다.</td>
+                            <td colspan="8">등록된 책이 없습니다.</td>
                         </tr>
                     </th:block>
                     <th:block th:if="${not #lists.isEmpty(bookList)}">
-                        <tr class="text-left" th:each="book : ${bookList}" th:object="${book}">
+                        <tr class="text-left" th:each="book : ${bookList}" th:object="${book}" th:data-book-id="*{bookId}">
                             <th scope="row" th:text="*{bookId}"></th>
                             <td th:text="*{title}"></td>
                             <td th:text="*{author}"></td>
                             <td th:text="*{publisher}"></td>
                             <td th:text="*{publishDate}"></td>
                             <td th:text="*{price}"></td>
+                            <td><a href="#" class="updateBtn link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">수정</a></td>
+                            <td><a href="#" class="deleteBtn link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">삭제</a></td>
                         </tr>
                     </th:block>
                 </tbody>
@@ -74,7 +78,7 @@
                 <div class="mb-3 row">
                     <label for="publishDate" class="col-sm-3 col-form-label">출간연도</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" th:field="*{publishDate}">
+                        <input type="date" class="form-control" th:field="*{publishDate}">
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -83,9 +87,14 @@
                         <input type="text" class="form-control" th:field="*{price}">
                     </div>
                 </div>
-
+                <div class="text-end">
+                    <button type="button" class="btn btn-primary btn-sm" id="insertBtn">책 정보 등록</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="cancelBtn">다시 입력</button>
+                </div>
             </form>
         </div>
     </div>
+    <script src="/js/book.js"></script>
+    <script src="/js/common.js"></script>
 </body>
 </html>

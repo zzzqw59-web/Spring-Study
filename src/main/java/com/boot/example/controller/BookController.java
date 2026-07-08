@@ -5,10 +5,7 @@ import com.boot.example.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,18 @@ public class BookController {
     @PostMapping("/bookInsert")
     public String bookInsert(@ModelAttribute Book book) {
         bookService.bookInsert(book);
+        return "redirect:/book/bookList";
+    }
+
+    @PostMapping("/bookUpdate")
+    public String bookUpdate(@ModelAttribute Book book) {
+        bookService.bookUpdate(book);
+        return "redirect:/book/bookList";
+    }
+
+    @GetMapping("/bookDelete")
+    public String bookDelete(@RequestParam int bookId) {
+        bookService.bookDelete(bookId);
         return "redirect:/book/bookList";
     }
 }
