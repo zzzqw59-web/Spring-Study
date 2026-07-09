@@ -1,14 +1,10 @@
 package com.boot.example.mapper;
 
-import com.boot.example.domain.StudentDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -25,20 +21,14 @@ public class StudentMapperTest {
     }
 
     @Test
-    public void studentInsertTest() {
-        StudentDTO student = new StudentDTO();
-        student.setStudentNumber("0606");
-        student.setStudentName("한익현");
-        student.setStudentId("javauser");
-        student.setStudentPassword("javauser123");
-        student.setStudentBirth(LocalDate.parse("1997-08-29"));
-        student.setStudentPhone("010-6323-4862");
-        student.setStudentAddress("서울시 동작구 은평동");
-        student.setStudentEmail("afaf@naver.com");
-        student.setRegDate(LocalDateTime.parse("2026-06-08T10:30:00"));
+    public void studentAutoNumberTest() {
+        String studentNumber = studentMapper.studentAutoNumber("01");
+        log.info("컴퓨터학과 선택 시 자동 생성된 학번: {}", studentNumber);
+    }
 
-        int result = studentMapper.studentInsert(student);
-
-        log.info("적용된 행의 수: {}", result);
+    @Test
+    public void studentIdCheckTest() {
+        int result = studentMapper.studentIdCheck("javajsp");
+        log.info("아이디 중복 검사 결과: {} (1: 중복, 0: 사용가능)", result);
     }
 }

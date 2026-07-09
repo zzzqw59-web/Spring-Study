@@ -33,4 +33,18 @@ public class MovieMapperTest {
 
         log.info("추가된 행의 수: {}", result);
     }
+
+    @Test
+    public void movieUpdateTest() {
+        MovieDTO movie = new MovieDTO();
+        movie.setMovieId(1);
+        movie.setTitle("벨린");
+        movie.setDirector("놀란");
+        movie.setGallery(700);
+        movie.setGenre("미스터리");
+
+        int result = movieMapper.movieUpdate(movie);
+
+        log.info("수정된 행의 수: {}", result);
+    }
 }

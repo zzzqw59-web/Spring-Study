@@ -1,28 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.boot.example.mapper.StudentMapper">
-
     <resultMap id="studentResult" type="com.boot.example.domain.StudentDTO">
-        <result column="no" property="no"></result>
+        <id column="no" property="no"></id>
         <result column="sd_num" property="studentNumber"></result>
         <result column="sd_name" property="studentName"></result>
         <result column="sd_id" property="studentId"></result>
-        <result column="sd_passwd" property="studentPassword"></result>
+        <result column="sd_passwd" property="studentPasswd"></result>
         <result column="sd_birth" property="studentBirth"></result>
         <result column="sd_phone" property="studentPhone"></result>
         <result column="sd_address" property="studentAddress"></result>
         <result column="sd_email" property="studentEmail"></result>
         <result column="sd_date" property="regDate"></result>
+        <association property="subject">
+            <result column="s_num" property="subjectNumber"></result>
+            <result column="s_name" property="subjectName"></result>
+        </association>
     </resultMap>
 
     <select id="studentList" resultMap="studentResult">
-        SELECT no, sd_num, sd_name, sd_id, sd_passwd, sd_birth, sd_phone, sd_address, sd_email, sd_date
-        FROM student
+        SELECT
+        st.no AS no,
+        sd_num,
+        sd_name,
+        sd_id,
+        sd_birth,
+        sd_phone,
+        sd_address,
+        sd_email,
+        sd_date,
+        sd_passwd,
+        su.s_num AS s_num,
+        s_name
+        FROM
+            student st
+                INNER JOIN subject su
+            ON st.s_num = su.s_num
+        ORDER BY st.no
     </select>
 
-    <insert id="studentInsert" parameterType="com.boot.example.domain.StudentDTO" useGeneratedKeys="true" keyColumn="no" keyProperty="no">
-        INSERT INTO student(sd_num, sd_name, sd_id, sd_passwd, sd_birth, sd_phone, sd_address, sd_email, sd_date)
-        VALUES (#{studentNumber}, #{studentName}, #{studentId}, #{studentPassword}, #{studentBirth}, #{studentPhone}, #{studentAddress}, #{studentEmail}, #{regDate})
-    </insert>
+    <select id="studentAutoNumber" resultType="string">
+        SELECT
+        TO_CHAR(SYSDATE, 'YY') || s.s_num || LPAD(NVL(MAX(TO_NUMBER(SUBSTR(st.sd_num, 5))), 0) + 1, 4, '0') AS student_number
+        FROM
+        subject s
+        LEFT OUTER JOIN student st
+        ON s.s_num = st.s_num
+        WHERE s.s_num = #{subjectNumber}
+        GROUP BY s.s_num
+    </select>
+
+    <select id="studentIdCheck" resultType="int">
+        SELECT
+        CASE
+        WHEN
+        EXISTS (
+        SELECT
+        1
+        FROM
+        student
+        WHERE
+        sd_id = 'javauser'
+        )
+        THEN
+        1
+        ELSE
+        0
+        END AS result
+        FROM dual
+    </select>
+
 
 </mapper>

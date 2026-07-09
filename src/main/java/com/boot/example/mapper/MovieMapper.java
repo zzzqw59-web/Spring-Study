@@ -10,4 +10,6 @@ public interface MovieMapper {
     List<MovieDTO> movieList();
 
     int movieInsert(MovieDTO movieDTO);
+
+    int movieUpdate(MovieDTO movieDTO);
 }

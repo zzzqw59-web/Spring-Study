@@ -22,5 +22,13 @@
         VALUES (#{title}, #{director}, #{genre}, #{gallery})
     </insert>
 
+    <update id="movieUpdate" parameterType="com.boot.example.domain.MovieDTO">
+        UPDATE movie
+        SET
+            movie_title = #{title}, movie_director = #{director}, movie_genre = #{genre}, movie_gallery = #{gallery}
+        WHERE
+            movie_id = #{movieId}
+    </update>
+
 
 </mapper>
