@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface DepartmentMapper {
     List<DepartmentDTO> departmentList();
+
+    int departmentInsert(DepartmentDTO departmentDTO);
 }

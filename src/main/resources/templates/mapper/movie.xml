@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.example.mapper.MovieMapper">
+    <resultMap id="movieResult" type="com.boot.example.domain.MovieDTO">
+        <result column="movie_id" property="movieId"></result>
+        <result column="movie_title" property="title"></result>
+        <result column="movie_director" property="director"></result>
+        <result column="movie_genre" property="genre"></result>
+        <result column="movie_gallery" property="gallery"></result>
+    </resultMap>
+
+    <select id="movieList" resultMap="movieResult">
+        SELECT
+        movie_title, movie_director, movie_genre, movie_gallery
+        FROM
+        movie
+    </select>
+
+    <insert id="movieInsert" useGeneratedKeys="true" keyColumn="movie_id" keyProperty="movieId">
+        INSERT INTO movie
+            (movie_title, movie_director, movie_genre, movie_gallery)
+        VALUES (#{title}, #{director}, #{genre}, #{gallery})
+    </insert>
+
+
+</mapper>

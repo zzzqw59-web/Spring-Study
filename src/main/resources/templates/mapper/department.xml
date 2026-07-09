@@ -2,14 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.boot.example.mapper.DepartmentMapper">
     <resultMap id="departmentResult" type="com.boot.example.domain.DepartmentDTO">
+        <result column="department_id" property="departmentId"></result>
         <result column="department_name" property="departmentName"></result>
         <result column="manager_id" property="managerId"></result>
         <result column="location_id" property="locationId"></result>
     </resultMap>
 
     <select id="departmentList" resultMap="departmentResult">
-        SELECT department_name, manager_id, location_id
-        FROM departments
+        SELECT
+            department_id, department_name, manager_id, location_id
+        FROM
+            departments
     </select>
+
+    <insert id="departmentInsert" keyColumn="department_id" keyProperty="departmentId">
+        INSERT INTO departments
+            (department_id, department_name, manager_id, location_id)
+        VALUES
+            (362, 'Assoing', 100, 1700)
+    </insert>
 
 </mapper>
